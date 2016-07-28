@@ -2,6 +2,7 @@ import re
 
 from cloudshell.networking.ericsson.ericsson_configuration_operations import EricssonConfigurationOperations
 from cloudshell.networking.ericsson.ericsson_connectivity_operations import EricssonConnectivityOperations
+from cloudshell.networking.ericsson.ericsson_firmware_operations import EricssonFirmwareOperations
 from cloudshell.networking.ericsson.ericsson_send_command_operations import EricssonSendCommandOperations
 from cloudshell.networking.ericsson.seos.autoload.ericsson_seos_snmp_autoload import EricssonSEOSSNMPAutoload
 from cloudshell.shell.core.context_utils import get_decrypted_password_by_attribute_name_wrapper, \
@@ -18,9 +19,8 @@ def send_default_actions(session):
     :return:
     """
 
-    # print 'default actions'
     enter_enable_mode(session=session)
-    # session.hardware_expect('terminal length 0', ENABLE_PROMPT)
+    session.hardware_expect('terminal length 0', ENABLE_PROMPT)
     # session.hardware_expect('terminal no exec prompt timestamp', ENABLE_PROMPT)
     # session.hardware_expect(ENTER_CONFIG_MODE_PROMPT_COMMAND, CONFIG_MODE_PROMPT)
     # session.hardware_expect('no logging console', CONFIG_MODE_PROMPT)
@@ -32,7 +32,7 @@ EXIT_CONFIG_MODE_PROMPT_COMMAND = 'exit'
 COMMIT_COMMAND = 'commit'
 DEFAULT_ACTIONS = send_default_actions
 SUPPORTED_OS = ["SE[ -]?OS"]
-AUTHENTICATION_ERROR_PATTERN = r'[Ll]ogin\s*[Ii]ncorrect|'+\
+AUTHENTICATION_ERROR_PATTERN = r'[Ll]ogin\s*[Ii]ncorrect|' + \
                                '[Bb]ad\s*([Pp]assword(s)?|[Ss]ecret(s)?|[Ff]ailed\s*(to)?\s*[Aa]uthenticate'
 ERROR_MAP = {'Database.*Lock.*': 'Database locked out, please try again.'}
 
@@ -50,10 +50,10 @@ def enter_enable_mode(session):
 
 CONNECTIVITY_OPERATIONS_CLASS = EricssonConnectivityOperations
 CONFIGURATION_OPERATIONS_CLASS = EricssonConfigurationOperations
-FIRMWARE_OPERATIONS_CLASS = EricssonConfigurationOperations
+FIRMWARE_OPERATIONS_CLASS = EricssonFirmwareOperations
 AUTOLOAD_OPERATIONS_CLASS = EricssonSEOSSNMPAutoload
 SEND_COMMAND_OPERATIONS_CLASS = EricssonSendCommandOperations
 
 GET_LOGGER_FUNCTION = get_logger_with_thread_id
 POOL_TIMEOUT = 300
-HE_MAX_LOOP_RETRIES = 2000
+HE_MAX_LOOP_RETRIES = 0
