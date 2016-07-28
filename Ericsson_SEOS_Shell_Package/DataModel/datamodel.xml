@@ -325,7 +325,7 @@
           </AttributeValues>
           <ParentModels />
           <Drivers>
-		<DriverName>Generic Ericsson SEOS Driver Version2</DriverName>
+		<DriverName>Generic Ericsson SEOS Driver Version</DriverName>
 	  </Drivers> 
           <Scripts />
         </ResourceModel>
@@ -434,7 +434,7 @@
       </AttributeValues>
           <ParentModels />
           <Drivers>
-            <DriverName>Generic Ericsson SEOS Driver Version2</DriverName>
+            <DriverName>Generic Ericsson SEOS Driver Version</DriverName>
           </Drivers> 
           <Scripts />
         </ResourceModel>

@@ -1,2 +1,7 @@
 *.pyc
 cloudshell/networking/ericsson/seos/test_ipos.py
+
+cloudshell_networking_ericsson_seos.egg-info
+Ericsson_SEOS_Shell_Package/Ericsson-SEOS-Shell.zip
+dist
+cloudshell/networking/ericsson/seos/autoload/test.py

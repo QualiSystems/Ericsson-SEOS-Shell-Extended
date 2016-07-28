@@ -23,6 +23,7 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
         self.snmp_view = 'qualiview'
         self.snmp_community = community
         self.vendor_type_exclusion_pattern = ['port.*mgmt']
+        self.module_details_regexp = r'^(?P<module_model>.*)\s+sn:(?P<serial_number>.*)\s+rev:(?P<version>.*) id'
         self.load_mib_list = ['RBN-PRODUCT-MIB']
         if not self.snmp_community:
             self.snmp_community = get_attribute_by_name('SNMP Read Community') or 'qualicommunity'
@@ -39,13 +40,13 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
 
     def discover(self):
         self._enable_snmp()
-        # try:
-        result = super(EricssonSEOSSNMPAutoload, self).discover()
-        # except Exception as e:
-        #self.logger.error('Autoload failed: {0}'.format(e.message))
-        #    raise Exception('EricssonGenericSNMPAutoload', e.message)
-        # finally:
-        self._disable_snmp()
+        try:
+            result = super(EricssonSEOSSNMPAutoload, self).discover()
+        except Exception as e:
+            self.logger.error('Autoload failed: {0}'.format(e.message))
+            raise Exception('EricssonGenericSNMPAutoload', e.message)
+        finally:
+            self._disable_snmp()
         return result
 
     def _enable_snmp(self):
