@@ -9,8 +9,8 @@ from cloudshell.shell.core.context_utils import get_decrypted_password_by_attrib
     get_attribute_by_name_wrapper
 from cloudshell.shell.core.dependency_injection.context_based_logger import get_logger_with_thread_id
 
-DEFAULT_PROMPT = '[>#]\s*$'
-ENABLE_PROMPT = '#\s*$'
+DEFAULT_PROMPT = '\].*[>#]\s*$'
+ENABLE_PROMPT = '\].*#\s*$'
 CONFIG_MODE_PROMPT = '\(config.*\)#\s*$'
 
 
