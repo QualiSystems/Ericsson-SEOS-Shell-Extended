@@ -24,6 +24,8 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
         self.snmp_community = community
         self.vendor_type_exclusion_pattern = ['port.*mgmt']
         self.module_details_regexp = r'^(?P<module_model>.*)\s+sn:(?P<serial_number>.*)\s+rev:(?P<version>.*) id'
+        self.interface_mapping_key = 'rbnIpBindHierarchicalIfIndex'
+        self.interface_mapping_mib = 'RBN-IP-BIND-MIB'
         self.load_mib_list = ['RBN-PRODUCT-MIB']
         if not self.snmp_community:
             self.snmp_community = get_attribute_by_name('SNMP Read Community') or 'qualicommunity'
@@ -55,7 +57,7 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
         existing_snmp_community = self.snmp_community in self.cli.send_command('show snmp communities').lower()
 
         if not existing_snmp_server:
-            self.cli.send_config_command('snmp server')
+            self.cli.send_config_command('snmp server enhance ifmib')
 
         if not existing_snmp_view:
             self.cli.send_config_command('snmp view {0} internet included'.format(self.snmp_view))
