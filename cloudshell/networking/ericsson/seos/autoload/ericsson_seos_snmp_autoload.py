@@ -9,7 +9,7 @@ from cloudshell.shell.core.context_utils import get_attribute_by_name
 
 
 class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
-    def __init__(self, snmp_handler=None, logger=None, supported_os=None, cli=None, community=None):
+    def __init__(self, snmp_handler=None, logger=None, supported_os=None, cli=None, snmp_community=None):
         """Basic init with injected snmp handler and logger
 
         :param snmp_handler:
@@ -21,7 +21,7 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
         # self.port_ethernet_vendor_type_pattern = r'.6.10.201|.6.10.202'
         self._cli = cli
         self.snmp_view = 'qualiview'
-        self.snmp_community = community
+        self.snmp_community = snmp_community
         self.vendor_type_exclusion_pattern = ['port.*mgmt']
         self.module_details_regexp = r'^(?P<module_model>.*)\s+sn:(?P<serial_number>.*)\s+rev:(?P<version>.*) id'
         self.interface_mapping_key = 'rbnIpBindHierarchicalIfIndex'
@@ -43,7 +43,7 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
     def discover(self):
         self._enable_snmp()
         try:
-            result = super(EricssonSEOSSNMPAutoload, self).discover()
+            result = self.get_autoload_details()
         except Exception as e:
             self.logger.error('Autoload failed: {0}'.format(e.message))
             raise Exception('EricssonGenericSNMPAutoload', e.message)
