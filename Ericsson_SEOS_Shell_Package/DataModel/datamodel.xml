@@ -438,9 +438,6 @@
                         <AttachedAttribute Name="Auto Negotiation" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
-                        <AttachedAttribute Name="Protocol Type" IsOverridable="true" IsLocal="true">
-                            <AllowedValues/>
-                        </AttachedAttribute>
                     </AttachedAttributes>
                     <AttributeValues>
                         <AttributeValue Name="MAC Address" Value=""/>
@@ -451,7 +448,6 @@
                         <AttributeValue Name="Bandwidth" Value="0"/>
                         <AttributeValue Name="MTU" Value="0"/>
                         <AttributeValue Name="Duplex" Value="Half"/>
-                        <AttributeValue Name="Protocol Type" Value="Transparent"/>
                         <AttributeValue Name="Adjacent" Value=""/>
                         <AttributeValue Name="Auto Negotiation" Value="False"/>
                     </AttributeValues>
@@ -550,16 +546,12 @@
                         <AttachedAttribute Name="Port Description" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
-                        <AttachedAttribute Name="Protocol Type" IsOverridable="true" IsLocal="true">
-                            <AllowedValues/>
-                        </AttachedAttribute>
-                    </AttachedAttributes>
+                   </AttachedAttributes>
                     <AttributeValues>
                         <AttributeValue Name="Associated Ports" Value=""/>
                         <AttributeValue Name="IPv4 Address" Value=""/>
                         <AttributeValue Name="IPv6 Address" Value=""/>
                         <AttributeValue Name="Port Description" Value=""/>
-                        <AttributeValue Name="Protocol Type" Value="Transparent"/>
                     </AttributeValues>
                     <ParentModels>
                         <ParentModelName>Ericsson SEOS Router</ParentModelName>
