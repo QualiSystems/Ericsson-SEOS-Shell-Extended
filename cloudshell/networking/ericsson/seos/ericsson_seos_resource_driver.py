@@ -1,7 +1,11 @@
-import inject
+from cloudshell.networking.ericsson.ericsson_configuration_operations import EricssonConfigurationOperations
+from cloudshell.networking.ericsson.ericsson_connectivity_operations import EricssonConnectivityOperations
+from cloudshell.networking.ericsson.ericsson_firmware_operations import EricssonFirmwareOperations
+from cloudshell.networking.ericsson.ericsson_send_command_operations import EricssonSendCommandOperations
+from cloudshell.networking.ericsson.seos.autoload.ericsson_seos_snmp_autoload import EricssonSEOSSNMPAutoload
 
 from cloudshell.networking.generic_bootstrap import NetworkingGenericBootstrap
-from cloudshell.networking.networking_resource_driver_interface import NetworkingResourceDriverInterface
+from cloudshell.networking.networking_resource_driver_interface_v4 import NetworkingResourceDriverInterface
 from cloudshell.shell.core.context_utils import context_from_args
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.driver_utils import GlobalLock
@@ -29,7 +33,7 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
 
     @context_from_args
     def ApplyConnectivityChanges(self, context, request):
-        connectivity_operations = inject.instance('connectivity_operations')
+        connectivity_operations = EricssonConnectivityOperations()
         connectivity_operations.logger.info('Start applying connectivity changes, request is: {0}'.format(str(request)))
         response = connectivity_operations.apply_connectivity_changes(request)
         connectivity_operations.logger.info('Finished applying connectivity changes, responce is: {0}'.format(str(
@@ -39,34 +43,43 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
 
     @GlobalLock.lock
     @context_from_args
-    def restore(self, context, path, config_type, restore_method, vrf=None):
+    def restore(self, context, path, configuration_type, restore_method, vrf_management_name=None):
         """Restore selected file to the provided destination
 
         :param path: source config file
-        :param config_type: running or startup configs
+        :param configuration_type: running or startup configs
         :param restore_method: append or override methods
-        :param vrf: VRF management Name
+        :param vrf_management_name: VRF management Name
         """
 
-        configuration_operations = inject.instance('configuration_operations')
+        configuration_operations = EricssonConfigurationOperations()
         response = configuration_operations.restore_configuration(source_file=path, restore_method=restore_method,
-                                                                  config_type=config_type, vrf=vrf)
+                                                                  config_type=configuration_type,
+                                                                  vrf=vrf_management_name)
         configuration_operations.logger.info('Restore completed')
         configuration_operations.logger.info(response)
 
     @context_from_args
-    def save(self, context, destination_host, source_filename, vrf=None):
+    def save(self, context, folder_path, configuration_type, vrf_management_name=None):
         """Save selected file to the provided destination
 
-        :param source_filename: source file, which will be saved
-        :param destination_host: destination path where file will be saved
-        :param vrf: VRF management Name
+        :param configuration_type: source file, which will be saved
+        :param folder_path: destination path where file will be saved
+        :param vrf_management_name: VRF management Name
         """
 
-        configuration_operations = inject.instance('configuration_operations')
-        response = configuration_operations.save_configuration(destination_host, source_filename, vrf)
+        configuration_operations = EricssonConfigurationOperations()
+        response = configuration_operations.save_configuration(folder_path, configuration_type, vrf_management_name)
         configuration_operations.logger.info('Save completed')
         return response
+
+    @context_from_args
+    def orchestration_save(self, context, mode="shallow", custom_params=None):
+        pass
+
+    @context_from_args
+    def orchestration_restore(self, context, saved_artifact_info, custom_params=None):
+        pass
 
     @context_from_args
     def get_inventory(self, context):
@@ -76,14 +89,15 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
         :rtype: string
         """
 
-        autoload_operations = inject.instance("autoload_operations")
+        autoload_operations = EricssonSEOSSNMPAutoload()
+        autoload_operations.logger.info('Autoload started')
         response = autoload_operations.discover()
         autoload_operations.logger.info('Autoload completed')
         return response
 
     @GlobalLock.lock
     @context_from_args
-    def update_firmware(self, context, remote_host, file_path):
+    def load_firmware(self, context, remote_host, file_path):
         """Upload and updates firmware on the resource
 
         :param remote_host: path to tftp:// server where firmware file is stored
@@ -92,32 +106,40 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
         :rtype: string
         """
 
-        firmware_operations = inject.instance("firmware_operations")
+        firmware_operations = EricssonFirmwareOperations()
         response = firmware_operations.update_firmware(remote_host=remote_host, file_path=file_path)
         firmware_operations.logger.info(response)
 
     @context_from_args
-    def send_custom_command(self, context, command):
+    def send_custom_command(self, context, custom_command):
         """Send custom command
 
         :return: result
         :rtype: string
         """
 
-        send_command_operations = inject.instance("send_command_operations")
-        response = send_command_operations.send_command(command=command)
-        print response
+        send_command_operations = EricssonSendCommandOperations()
+        response = send_command_operations.send_command(command=custom_command)
         return response
 
     @context_from_args
-    def send_custom_config_command(self, context, command):
+    def health_check(self, context):
+        """Performs device health check
+
+        """
+
+        send_command_operations = EricssonSendCommandOperations()
+        send_command_operations.send_command(command='')
+
+    @context_from_args
+    def send_custom_config_command(self, context, custom_command):
         """Send custom command in configuration mode
 
         :return: result
         :rtype: string
         """
-        send_command_operations = inject.instance("send_command_operations")
-        result_str = send_command_operations.send_config_command(command=command)
+        send_command_operations = EricssonSendCommandOperations()
+        result_str = send_command_operations.send_config_command(command=custom_command)
         return result_str
 
     @context_from_args
