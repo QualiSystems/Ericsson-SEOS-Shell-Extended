@@ -4,9 +4,9 @@ from cloudshell.networking.ericsson.ericsson_firmware_operations import Ericsson
 from cloudshell.networking.ericsson.ericsson_send_command_operations import EricssonSendCommandOperations
 from cloudshell.networking.ericsson.seos.autoload.ericsson_seos_snmp_autoload import EricssonSEOSSNMPAutoload
 
-from cloudshell.networking.generic_bootstrap import NetworkingGenericBootstrap
 from cloudshell.networking.networking_resource_driver_interface_v4 import NetworkingResourceDriverInterface
 from cloudshell.shell.core.context_utils import context_from_args
+from cloudshell.shell.core.driver_bootstrap import DriverBootstrap
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.driver_utils import GlobalLock
 
@@ -16,7 +16,7 @@ import cloudshell.networking.ericsson.seos.ericsson_seos_configuration as driver
 class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
     def __init__(self):
         super(EricssonSEOSResourceDriver, self).__init__()
-        bootstrap = NetworkingGenericBootstrap()
+        bootstrap = DriverBootstrap()
         bootstrap.add_config(driver_config)
         bootstrap.initialize()
 
