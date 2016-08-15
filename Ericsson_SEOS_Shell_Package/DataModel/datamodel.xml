@@ -70,6 +70,11 @@
                 <Rule Name="Available For Abstract Resources"/>
             </Rules>
         </AttributeInfo>
+        <AttributeInfo Name="VRF Management Name" Type="String" DefaultValue="" IsReadOnly="false">
+            <Rules>
+                <Rule Name="Configuration"/>
+            </Rules>
+        </AttributeInfo>
         <AttributeInfo Name="SNMP Read Community" Type="String" DefaultValue="" IsReadOnly="false">
             <Rules>
                 <Rule Name="Configuration"/>
@@ -289,6 +294,9 @@
                         <AttachedAttribute Name="SNMP Write Community" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
+                        <AttachedAttribute Name="VRF Management Name" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
                         <AttachedAttribute Name="Sessions Concurrency Limit" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
@@ -344,6 +352,7 @@
                         <AttributeValue Name="Console User" Value=""/>
                         <AttributeValue Name="CLI Connection Type" Value="Auto"/>
                         <AttributeValue Name="Power Management" Value="False"/>
+                        <AttributeValue Name="VRF Management Name" Value=""/>
                         <AttributeValue Name="Enable SNMP" Value="True"/>
                         <AttributeValue Name="Disable SNMP" Value="False"/>
                     </AttributeValues>
