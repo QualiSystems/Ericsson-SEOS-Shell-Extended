@@ -25,6 +25,8 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
         self.module_details_regexp = r'^(?P<module_model>.*)\s+sn:(?P<serial_number>.*)\s+rev:(?P<version>.*) id'
         self.interface_mapping_key = 'rbnIpBindHierarchicalIfIndex'
         self.interface_mapping_mib = 'RBN-IP-BIND-MIB'
+        self.enable_snmp = True
+        self.disable_snmp = False
         self.load_mib_list = ['RBN-PRODUCT-MIB']
 
         if not self.snmp_community:
@@ -42,13 +44,12 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
 
     def discover(self):
         try:
-            enable_snmp = (get_attribute_by_name('Enable SNMP') or 'true').lower() == 'true'
-            disable_snmp = (get_attribute_by_name('Disable SNMP') or 'false').lower() == 'true'
+            self.enable_snmp = (get_attribute_by_name('Enable SNMP') or 'true').lower() == 'true'
+            self.disable_snmp = (get_attribute_by_name('Disable SNMP') or 'false').lower() == 'true'
         except:
-            enable_snmp = True
-            disable_snmp = False
+            pass
 
-        if enable_snmp:
+        if self.enable_snmp:
             self._enable_snmp()
         try:
             result = self.get_autoload_details()
@@ -56,7 +57,7 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
             self.logger.error('Autoload failed: {0}'.format(e.message))
             raise Exception('EricssonGenericSNMPAutoload', e.message)
         finally:
-            if disable_snmp:
+            if self.disable_snmp:
                 self._disable_snmp()
         return result
 
