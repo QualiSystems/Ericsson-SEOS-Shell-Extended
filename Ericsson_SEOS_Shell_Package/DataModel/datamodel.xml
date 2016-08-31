@@ -64,15 +64,25 @@
                 <Rule Name="Configuration"/>
             </Rules>
         </AttributeInfo>
+        <AttributeInfo Name="Backup Type" Type="String" DefaultValue="" IsReadOnly="false">
+            <Rules>
+                <Rule Name="Configuration"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="Backup User" Type="String" DefaultValue="" IsReadOnly="false">
+            <Rules>
+                <Rule Name="Configuration"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="Backup Password" Type="Password" DefaultValue="3M3u7nkDzxWb0aJ/IZYeWw==" IsReadOnly="false">
+            <Rules>
+                <Rule Name="Configuration"/>
+            </Rules>
+        </AttributeInfo>
         <AttributeInfo Name="Model" Type="String" DefaultValue="" IsReadOnly="true">
             <Rules Override="false">
                 <Rule Name="Setting"/>
                 <Rule Name="Available For Abstract Resources"/>
-            </Rules>
-        </AttributeInfo>
-        <AttributeInfo Name="VRF Management Name" Type="String" DefaultValue="" IsReadOnly="false">
-            <Rules>
-                <Rule Name="Configuration"/>
             </Rules>
         </AttributeInfo>
         <AttributeInfo Name="SNMP Read Community" Type="String" DefaultValue="" IsReadOnly="false">
@@ -126,6 +136,16 @@
             </Rules>
         </AttributeInfo>
         <AttributeInfo Name="Console User" Type="String" DefaultValue="" IsReadOnly="false">
+            <Rules>
+                <Rule Name="Configuration"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="VRF Management Name" Type="String" DefaultValue="" IsReadOnly="false">
+            <Rules>
+                <Rule Name="Configuration"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="CLI TCP Port" Type="Numeric" DefaultValue="0" IsReadOnly="false">
             <Rules>
                 <Rule Name="Configuration"/>
             </Rules>
@@ -225,11 +245,6 @@
                 <Rule Name="Available For Abstract Resources"/>
             </Rules>
         </AttributeInfo>
-        <AttributeInfo Name="CLI TCP Port" Type="Numeric" DefaultValue="0" IsReadOnly="false">
-            <Rules>
-                <Rule Name="Configuration"/>
-            </Rules>
-        </AttributeInfo>
         <AttributeInfo Name="Associated Ports" Type="String" DefaultValue=""
                        Description="in the format &quot;[portResourceName],...&quot;, for example &quot;GE0-0-0-1,GE-0-0-0-2&quot;"
                        IsReadOnly="true">
@@ -273,6 +288,18 @@
                         <AttachedAttribute Name="Backup Location" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
+                        <AttachedAttribute Name="Backup Type" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
+                        <AttachedAttribute Name="Backup User" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
+                        <AttachedAttribute Name="Backup Password" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
+                        <AttachedAttribute Name="VRF Management Name" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
                         <AttachedAttribute Name="Model" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
@@ -292,9 +319,6 @@
                             <AllowedValues/>
                         </AttachedAttribute>
                         <AttachedAttribute Name="SNMP Write Community" IsOverridable="true" IsLocal="true">
-                            <AllowedValues/>
-                        </AttachedAttribute>
-                        <AttachedAttribute Name="VRF Management Name" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
                         <AttachedAttribute Name="Sessions Concurrency Limit" IsOverridable="true" IsLocal="true">
@@ -338,6 +362,9 @@
                         <AttributeValue Name="Vendor" Value=""/>
                         <AttributeValue Name="Location" Value=""/>
                         <AttributeValue Name="Backup Location" Value=""/>
+                        <AttributeValue Name="Backup User" Value=""/>
+                        <AttributeValue Name="Backup Password" Value="3M3u7nkDzxWb0aJ/IZYeWw=="/>
+                        <AttributeValue Name="Backup Type" Value=""/>
                         <AttributeValue Name="Model" Value=""/>
                         <AttributeValue Name="SNMP Read Community" Value=""/>
                         <AttributeValue Name="SNMP V3 Password" Value=""/>
@@ -345,6 +372,7 @@
                         <AttributeValue Name="SNMP V3 User" Value=""/>
                         <AttributeValue Name="SNMP Version" Value=""/>
                         <AttributeValue Name="SNMP Write Community" Value=""/>
+                        <AttributeValue Name="VRF Management Name" Value=""/>
                         <AttributeValue Name="Console Password" Value="3M3u7nkDzxWb0aJ/IZYeWw=="/>
                         <AttributeValue Name="Console Port" Value="0"/>
                         <AttributeValue Name="CLI TCP Port" Value="0"/>
@@ -352,7 +380,6 @@
                         <AttributeValue Name="Console User" Value=""/>
                         <AttributeValue Name="CLI Connection Type" Value="Auto"/>
                         <AttributeValue Name="Power Management" Value="False"/>
-                        <AttributeValue Name="VRF Management Name" Value=""/>
                         <AttributeValue Name="Enable SNMP" Value="True"/>
                         <AttributeValue Name="Disable SNMP" Value="False"/>
                     </AttributeValues>
