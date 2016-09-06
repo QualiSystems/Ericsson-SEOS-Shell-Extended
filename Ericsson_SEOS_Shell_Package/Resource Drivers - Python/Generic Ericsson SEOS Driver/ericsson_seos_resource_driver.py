@@ -1,7 +1,7 @@
 from cloudshell.networking.ericsson.ericsson_configuration_operations import EricssonConfigurationOperations
 from cloudshell.networking.ericsson.ericsson_connectivity_operations import EricssonConnectivityOperations
 from cloudshell.networking.ericsson.ericsson_firmware_operations import EricssonFirmwareOperations
-from cloudshell.networking.ericsson.ericsson_send_command_operations import EricssonSendCommandOperations
+from cloudshell.networking.ericsson.ericsson_run_command_operations import EricssonRunCommandOperations
 from cloudshell.networking.ericsson.ericsson_state_operations import EricssonStateOperations
 from cloudshell.networking.ericsson.seos.autoload.ericsson_seos_snmp_autoload import EricssonSEOSSNMPAutoload
 
@@ -135,14 +135,14 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
         firmware_operations.logger.info(response)
 
     @context_from_args
-    def send_custom_command(self, context, custom_command):
+    def run_custom_command(self, context, custom_command):
         """Send custom command
 
         :return: result
         :rtype: string
         """
 
-        send_command_operations = EricssonSendCommandOperations()
+        send_command_operations = EricssonRunCommandOperations()
         response = send_command_operations.send_command(command=custom_command)
         return response
 
@@ -156,13 +156,13 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
         return state_operations.health_check()
 
     @context_from_args
-    def send_custom_config_command(self, context, custom_command):
+    def run_custom_config_command(self, context, custom_command):
         """Send custom command in configuration mode
 
         :return: result
         :rtype: string
         """
-        send_command_operations = EricssonSendCommandOperations()
+        send_command_operations = EricssonRunCommandOperations()
         result_str = send_command_operations.send_config_command(command=custom_command)
         return result_str
 
