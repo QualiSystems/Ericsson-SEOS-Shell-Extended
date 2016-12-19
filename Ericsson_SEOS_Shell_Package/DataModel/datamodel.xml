@@ -85,6 +85,12 @@
                 <Rule Name="Available For Abstract Resources"/>
             </Rules>
         </AttributeInfo>
+        <AttributeInfo Name="Ericsson Model" Description="The Ericsson device model." Type="String" DefaultValue="" IsReadOnly="true">
+            <Rules Override="false">
+                <Rule Name="Setting"/>
+                <Rule Name="Available For Abstract Resources"/>
+            </Rules>
+        </AttributeInfo>
         <AttributeInfo Name="SNMP Read Community" Description="The SNMP Read-Only Community String is like a password. It is sent along with each SNMP Get-Request and allows (or denies) access to device." Type="String" DefaultValue="" IsReadOnly="false">
             <Rules>
                 <Rule Name="Configuration"/>
@@ -245,6 +251,30 @@
                 <Rule Name="Available For Abstract Resources"/>
             </Rules>
         </AttributeInfo>
+        <AttributeInfo Name="Supports 1 Gigabit" Description="" Type="Boolean" DefaultValue="False" IsReadOnly="true">
+            <Rules Override="false">
+                <Rule Name="Setting"/>
+                <Rule Name="Available For Abstract Resources"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="Supports 10 Gigabit" Description="" Type="Boolean" DefaultValue="False" IsReadOnly="true">
+            <Rules Override="false">
+                <Rule Name="Setting"/>
+                <Rule Name="Available For Abstract Resources"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="Supports 40 Gigabit" Description="" Type="Boolean" DefaultValue="False" IsReadOnly="true">
+            <Rules Override="false">
+                <Rule Name="Setting"/>
+                <Rule Name="Available For Abstract Resources"/>
+            </Rules>
+        </AttributeInfo>
+        <AttributeInfo Name="Supports 100 Gigabit" Description="" Type="Boolean" DefaultValue="False" IsReadOnly="true">
+            <Rules Override="false">
+                <Rule Name="Setting"/>
+                <Rule Name="Available For Abstract Resources"/>
+            </Rules>
+        </AttributeInfo>
         <AttributeInfo Name="Associated Ports" Description="Ports associated with this port channel. The value is in the format &quot;[portResourceName],…&quot;, for example &quot;GE0-0-0-1,GE0-0-0-2&quot;" Type="String" DefaultValue=""
                        IsReadOnly="true">
             <Rules Override="false">
@@ -315,7 +345,11 @@
                             <AllowedValues/>
                         </AttachedAttribute>
                         <AttachedAttribute Name="SNMP Version" IsOverridable="true" IsLocal="true">
-                            <AllowedValues/>
+                            <AllowedValues>
+                                <AllowedValue>v1</AllowedValue>
+                                <AllowedValue>v2c</AllowedValue>
+                                <AllowedValue>v3</AllowedValue>
+                            </AllowedValues>
                         </AttachedAttribute>
                         <AttachedAttribute Name="SNMP Write Community" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
@@ -363,7 +397,7 @@
                         <AttributeValue Name="Backup Location" Value=""/>
                         <AttributeValue Name="Backup User" Value=""/>
                         <AttributeValue Name="Backup Password" Value="3M3u7nkDzxWb0aJ/IZYeWw=="/>
-                        <AttributeValue Name="Backup Type" Value=""/>
+                        <AttributeValue Name="Backup Type" Value="File System"/>
                         <AttributeValue Name="Model" Value=""/>
                         <AttributeValue Name="SNMP Read Community" Value=""/>
                         <AttributeValue Name="SNMP V3 Password" Value=""/>
@@ -375,16 +409,17 @@
                         <AttributeValue Name="Console Password" Value="3M3u7nkDzxWb0aJ/IZYeWw=="/>
                         <AttributeValue Name="Console Port" Value="0"/>
                         <AttributeValue Name="CLI TCP Port" Value="0"/>
+                        <AttributeValue Name="Sessions Concurrency Limit" Value="1"/>
                         <AttributeValue Name="Console Server IP Address" Value=""/>
                         <AttributeValue Name="Console User" Value=""/>
                         <AttributeValue Name="CLI Connection Type" Value="Auto"/>
-                        <AttributeValue Name="Power Management" Value="False"/>
+                        <AttributeValue Name="Power Management" Value="True"/>
                         <AttributeValue Name="Enable SNMP" Value="True"/>
                         <AttributeValue Name="Disable SNMP" Value="False"/>
                     </AttributeValues>
                     <ParentModels/>
                     <Drivers>
-                        <DriverName>Generic Ericsson SEOS Driver</DriverName>
+                        <DriverName>Generic Ericsson SEOS Extended Driver</DriverName>
                     </Drivers>
                     <Scripts/>
                 </ResourceModel>
@@ -432,14 +467,75 @@
                         <AttachedAttribute Name="Model" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
+                        <AttachedAttribute Name="Ericsson Model" IsOverridable="true" IsLocal="true">
+                            <AllowedValues>
+                                <AllowedValue>ge-40-port</AllowedValue>
+                                <AllowedValue>10ge-10-port</AllowedValue>
+                                <AllowedValue>1-10ge-20-4-port</AllowedValue>
+                                <AllowedValue>40-100ge-2-port</AllowedValue>
+                                <AllowedValue>1-10ge-20-port</AllowedValue>
+                                <AllowedValue>10-100ge-2-2-port</AllowedValue>
+                                <AllowedValue>1-10ge-40-port</AllowedValue>
+                                <AllowedValue>ssc1</AllowedValue>
+                                <AllowedValue>ssc1-v2</AllowedValue>
+                                <AllowedValue>ssc2-a</AllowedValue>
+                                <AllowedValue>ssc3</AllowedValue>
+                                <AllowedValue>sw</AllowedValue>
+                                <AllowedValue>sw2</AllowedValue>
+                                <AllowedValue>alsw</AllowedValue>
+                                <AllowedValue>alswt</AllowedValue>
+                                <AllowedValue>alsw2</AllowedValue>
+                                <AllowedValue>rpsw</AllowedValue>
+                                <AllowedValue>rpsw-v2</AllowedValue>
+                                <AllowedValue>rpsw2</AllowedValue>
+                                <AllowedValue>atm-oc3e-8-port</AllowedValue>
+                                <AllowedValue>atm-oc12e-2-port</AllowedValue>
+                                <AllowedValue>oc3e-8-port</AllowedValue>
+                                <AllowedValue>oc12e-4-port</AllowedValue>
+                                <AllowedValue>oc48e-4-port</AllowedValue>
+                                <AllowedValue>oc192-1-port</AllowedValue>
+                                <AllowedValue>ch-oc3oc12-8or2-port</AllowedValue>
+                                <AllowedValue>fege-60-2-port</AllowedValue>
+                                <AllowedValue>ge-10-port</AllowedValue>
+                                <AllowedValue>ge-20-port</AllowedValue>
+                                <AllowedValue>ge3-4-port</AllowedValue>
+                                <AllowedValue>ge-5-port</AllowedValue>
+                                <AllowedValue>ge2-10-port</AllowedValue>
+                                <AllowedValue>ge4-20-port</AllowedValue>
+                                <AllowedValue>10ge-1-port</AllowedValue>
+                                <AllowedValue>10ge-4-port</AllowedValue>
+                                <AllowedValue>10ge-oc192-1-port</AllowedValue>
+                                <AllowedValue>ase</AllowedValue>
+                                <AllowedValue>sse</AllowedValue>
+                            </AllowedValues>
+                        </AttachedAttribute>
                     </AttachedAttributes>
                     <AttributeValues>
                         <AttributeValue Name="Serial Number" Value=""/>
                         <AttributeValue Name="Version" Value=""/>
                         <AttributeValue Name="Model" Value=""/>
+                        <AttributeValue Name="Ericsson Model" Value=""/>
                     </AttributeValues>
                     <ParentModels>
                         <ParentModelName>Generic Chassis</ParentModelName>
+                    </ParentModels>
+                    <Drivers/>
+                    <Scripts/>
+                </ResourceModel>
+            </Models>
+            <Categories/>
+        </ResourceFamily>
+        <ResourceFamily Name="PFE" Description="" IsSearchable="true">
+            <AttachedAttributes/>
+            <AttributeValues/>
+            <Models>
+                <ResourceModel Name="PFE" Description="" SupportsConcurrentCommands="false">
+                    <AttachedAttributes>
+                    </AttachedAttributes>
+                    <AttributeValues>
+                    </AttributeValues>
+                    <ParentModels>
+                        <ParentModelName>Generic Module</ParentModelName>
                     </ParentModels>
                     <Drivers/>
                     <Scripts/>
@@ -483,6 +579,18 @@
                         <AttachedAttribute Name="Auto Negotiation" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
+                        <AttachedAttribute Name="Supports 1 Gigabit" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
+                        <AttachedAttribute Name="Supports 10 Gigabit" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
+                        <AttachedAttribute Name="Supports 40 Gigabit" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
+                        <AttachedAttribute Name="Supports 100 Gigabit" IsOverridable="true" IsLocal="true">
+                            <AllowedValues/>
+                        </AttachedAttribute>
                     </AttachedAttributes>
                     <AttributeValues>
                         <AttributeValue Name="MAC Address" Value=""/>
@@ -495,10 +603,15 @@
                         <AttributeValue Name="Duplex" Value="Half"/>
                         <AttributeValue Name="Adjacent" Value=""/>
                         <AttributeValue Name="Auto Negotiation" Value="False"/>
+                        <AttributeValue Name="Supports 1 Gigabit" Value="False"/>
+                        <AttributeValue Name="Supports 10 Gigabit" Value="False"/>
+                        <AttributeValue Name="Supports 40 Gigabit" Value="False"/>
+                        <AttributeValue Name="Supports 100 Gigabit" Value="False"/>
                     </AttributeValues>
                     <ParentModels>
                         <ParentModelName>Generic Chassis</ParentModelName>
                         <ParentModelName>Generic Module</ParentModelName>
+                        <ParentModelName>PFE</ParentModelName>
                         <ParentModelName>Generic Sub Module</ParentModelName>
                     </ParentModels>
                     <Drivers/>
@@ -591,7 +704,7 @@
                         <AttachedAttribute Name="Port Description" IsOverridable="true" IsLocal="true">
                             <AllowedValues/>
                         </AttachedAttribute>
-                   </AttachedAttributes>
+                    </AttachedAttributes>
                     <AttributeValues>
                         <AttributeValue Name="Associated Ports" Value=""/>
                         <AttributeValue Name="IPv4 Address" Value=""/>
