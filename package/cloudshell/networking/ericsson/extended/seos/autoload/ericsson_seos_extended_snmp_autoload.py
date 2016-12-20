@@ -5,20 +5,19 @@ import time
 import inject
 
 from cloudshell.configuration.cloudshell_cli_binding_keys import CLI_SERVICE
-from cloudshell.networking.ericsson.autoload.ericsson_generic_snmp_autoload import EricssonGenericSNMPAutoload
+from cloudshell.networking.ericsson.extended.ericsson_extended_snmp_autoload import EricssonExtendedSNMPAutoload
 from cloudshell.shell.core.context_utils import get_attribute_by_name
 
 
-class EricssonSEOSExtendedSNMPAutoload(EricssonGenericSNMPAutoload):
+class EricssonSEOSExtendedSNMPAutoload(EricssonExtendedSNMPAutoload):
     def __init__(self, snmp_handler=None, logger=None, supported_os=None, cli=None, snmp_community=None):
         """Basic init with injected snmp handler and logger
 
-        :param snmp_handler:
-        :param logger:
-        :return:
-        """
-
-        EricssonGenericSNMPAutoload.__init__(self, snmp_handler, logger, supported_os)
+            :param snmp_handler:
+            :param logger:
+            :return:
+            """
+        super(EricssonSEOSExtendedSNMPAutoload, self).__init__(snmp_handler, logger, supported_os)
         self._cli = cli
         self.snmp_view = 'qualiview'
         self.snmp_community = snmp_community
@@ -30,7 +29,6 @@ class EricssonSEOSExtendedSNMPAutoload(EricssonGenericSNMPAutoload):
         self.enable_snmp = True
         self.disable_snmp = False
         self.load_mib_list = ['RBN-PRODUCT-MIB']
-
         if not self.snmp_community:
             self.snmp_community = get_attribute_by_name('SNMP Read Community') or 'qualicommunity'
 
