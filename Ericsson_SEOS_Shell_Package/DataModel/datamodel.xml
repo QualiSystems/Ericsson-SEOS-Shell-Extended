@@ -469,25 +469,6 @@
                         </AttachedAttribute>
                         <AttachedAttribute Name="Ericsson Model" IsOverridable="true" IsLocal="true">
                             <AllowedValues>
-                                <AllowedValue>ge-40-port</AllowedValue>
-                                <AllowedValue>10ge-10-port</AllowedValue>
-                                <AllowedValue>1-10ge-20-4-port</AllowedValue>
-                                <AllowedValue>40-100ge-2-port</AllowedValue>
-                                <AllowedValue>1-10ge-20-port</AllowedValue>
-                                <AllowedValue>10-100ge-2-2-port</AllowedValue>
-                                <AllowedValue>1-10ge-40-port</AllowedValue>
-                                <AllowedValue>ssc1</AllowedValue>
-                                <AllowedValue>ssc1-v2</AllowedValue>
-                                <AllowedValue>ssc2-a</AllowedValue>
-                                <AllowedValue>ssc3</AllowedValue>
-                                <AllowedValue>sw</AllowedValue>
-                                <AllowedValue>sw2</AllowedValue>
-                                <AllowedValue>alsw</AllowedValue>
-                                <AllowedValue>alswt</AllowedValue>
-                                <AllowedValue>alsw2</AllowedValue>
-                                <AllowedValue>rpsw</AllowedValue>
-                                <AllowedValue>rpsw-v2</AllowedValue>
-                                <AllowedValue>rpsw2</AllowedValue>
                                 <AllowedValue>atm-oc3e-8-port</AllowedValue>
                                 <AllowedValue>atm-oc12e-2-port</AllowedValue>
                                 <AllowedValue>oc3e-8-port</AllowedValue>

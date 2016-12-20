@@ -3,7 +3,8 @@ from cloudshell.networking.ericsson.ericsson_connectivity_operations import Eric
 from cloudshell.networking.ericsson.ericsson_firmware_operations import EricssonFirmwareOperations
 from cloudshell.networking.ericsson.ericsson_run_command_operations import EricssonRunCommandOperations
 from cloudshell.networking.ericsson.ericsson_state_operations import EricssonStateOperations
-from cloudshell.networking.ericsson.seos.autoload.ericsson_seos_snmp_autoload import EricssonSEOSSNMPAutoload
+from cloudshell.networking.ericsson.extended.seos.autoload.ericsson_seos_extended_snmp_autoload import \
+    EricssonSEOSExtendedSNMPAutoload
 
 from cloudshell.networking.networking_resource_driver_interface import NetworkingResourceDriverInterface
 from cloudshell.shell.core.context_utils import context_from_args
@@ -11,12 +12,12 @@ from cloudshell.shell.core.driver_bootstrap import DriverBootstrap
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.driver_utils import GlobalLock
 
-import cloudshell.networking.ericsson.seos.ericsson_seos_configuration as driver_config
+import cloudshell.networking.ericsson.extended.seos.ericsson_seos_extended_configuration as driver_config
 
 
-class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
+class EricssonSEOSExtendedResourceDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
     def __init__(self):
-        super(EricssonSEOSResourceDriver, self).__init__()
+        super(EricssonSEOSExtendedResourceDriver, self).__init__()
         bootstrap = DriverBootstrap()
         bootstrap.add_config(driver_config)
         bootstrap.initialize()
@@ -98,7 +99,7 @@ class EricssonSEOSResourceDriver(ResourceDriverInterface, NetworkingResourceDriv
         :rtype: string
         """
 
-        autoload_operations = EricssonSEOSSNMPAutoload()
+        autoload_operations = EricssonSEOSExtendedSNMPAutoload()
         autoload_operations.logger.info('Autoload started')
         response = autoload_operations.discover()
         autoload_operations.logger.info('Autoload completed')

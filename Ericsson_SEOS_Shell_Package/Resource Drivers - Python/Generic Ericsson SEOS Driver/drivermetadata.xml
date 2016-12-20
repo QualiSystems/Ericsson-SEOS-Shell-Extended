@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Driver Name="Generic Ericsson SEOS Driver" Version="1.0.0"
-        MainClass="ericsson_seos_resource_driver.EricssonSEOSResourceDriver"
+        MainClass="ericsson_seos_extended_resource_driver.EricssonSEOSExtendedResourceDriver"
         Description="Generic driver for all SEOS devices">
     <Layout>
         <Category Name="Hidden Commands">

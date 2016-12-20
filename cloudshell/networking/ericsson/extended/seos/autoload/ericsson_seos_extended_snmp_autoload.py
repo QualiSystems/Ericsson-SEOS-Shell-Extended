@@ -1,3 +1,4 @@
+import json
 import os
 import time
 
@@ -8,7 +9,7 @@ from cloudshell.networking.ericsson.autoload.ericsson_generic_snmp_autoload impo
 from cloudshell.shell.core.context_utils import get_attribute_by_name
 
 
-class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
+class EricssonSEOSExtendedSNMPAutoload(EricssonGenericSNMPAutoload):
     def __init__(self, snmp_handler=None, logger=None, supported_os=None, cli=None, snmp_community=None):
         """Basic init with injected snmp handler and logger
 
@@ -25,6 +26,7 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
         self.module_details_regexp = r'^(?P<module_model>.*)\s+sn:(?P<serial_number>.*)\s+rev:(?P<version>.*) id'
         self.interface_mapping_key = 'rbnIpBindHierarchicalIfIndex'
         self.interface_mapping_mib = 'RBN-IP-BIND-MIB'
+        self._load_configuration()
         self.enable_snmp = True
         self.disable_snmp = False
         self.load_mib_list = ['RBN-PRODUCT-MIB']
@@ -35,6 +37,12 @@ class EricssonSEOSSNMPAutoload(EricssonGenericSNMPAutoload):
     def load_ericsson_mib(self):
         path = os.path.abspath(os.path.join(os.path.dirname(__file__), '', 'mib'))
         self.snmp.update_mib_sources(path)
+
+    def _load_configuration(self):
+        local_path = os.path.dirname(__file__)
+        config_path = os.path.abspath(os.path.join(local_path, '', 'ericsson_ext_seos_autoload_config.json'))
+        str_config = open(config_path, 'r').read()
+        self.configuration = json.loads(str_config)
 
     @property
     def cli(self):
