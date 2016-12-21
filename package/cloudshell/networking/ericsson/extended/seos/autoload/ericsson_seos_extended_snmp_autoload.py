@@ -39,8 +39,9 @@ class EricssonExtendedSEOSSNMPAutoload(EricssonExtendedSNMPAutoload):
 
     def _load_configuration(self):
         local_path = os.path.dirname(__file__)
-        config_path = os.path.abspath(os.path.join(local_path, '', 'ericsson_ext_seos_autoload_config.json'))
-        str_config = open(config_path, 'r').read()
+        self.configuration_file_path = os.path.abspath(
+            os.path.join(local_path, '', 'ericsson_ext_seos_autoload_config.json'))
+        str_config = open(self.configuration_file_path, 'r').read()
         self.configuration = json.loads(str_config)
 
     @property

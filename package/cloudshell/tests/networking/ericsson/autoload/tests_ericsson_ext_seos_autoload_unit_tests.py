@@ -56,4 +56,3 @@ class TestEricssonSEOSAutoload(TestCase):
         print len(sub_modules)
         print len(port_channels)
         print str(len(power_ports)) + '\n'
-

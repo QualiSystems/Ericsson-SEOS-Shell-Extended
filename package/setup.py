@@ -11,7 +11,7 @@ with open('test_requirements.txt') as f_tests:
     required_for_tests = f_tests.read().splitlines()
 
 setup(
-    name='cloudshell-networking-ericsson-seos',
+    name='cloudshell-networking-ericsson-seos-extended',
     url='http://www.qualisystems.com/',
     author='QualiSystems',
     author_email='info@qualisystems.com',
@@ -19,6 +19,6 @@ setup(
 	install_requires=required,
     tests_require=required_for_tests,
     version=version_from_file,
-    description='QualiSystems networking Ericsson SEOS specific Package',
+    description='QualiSystems networking Ericsson SEOS extended specific Package',
     include_package_data = True
 )
