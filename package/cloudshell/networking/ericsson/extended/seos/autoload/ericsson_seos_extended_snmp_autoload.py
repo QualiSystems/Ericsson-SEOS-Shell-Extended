@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import time
 
 import inject
@@ -9,7 +10,7 @@ from cloudshell.networking.ericsson.extended.ericsson_extended_snmp_autoload imp
 from cloudshell.shell.core.context_utils import get_attribute_by_name
 
 
-class EricssonSEOSExtendedSNMPAutoload(EricssonExtendedSNMPAutoload):
+class EricssonExtendedSEOSSNMPAutoload(EricssonExtendedSNMPAutoload):
     def __init__(self, snmp_handler=None, logger=None, supported_os=None, cli=None, snmp_community=None):
         """Basic init with injected snmp handler and logger
 
@@ -17,7 +18,7 @@ class EricssonSEOSExtendedSNMPAutoload(EricssonExtendedSNMPAutoload):
             :param logger:
             :return:
             """
-        super(EricssonSEOSExtendedSNMPAutoload, self).__init__(snmp_handler, logger, supported_os)
+        super(EricssonExtendedSEOSSNMPAutoload, self).__init__(snmp_handler, logger, supported_os)
         self._cli = cli
         self.snmp_view = 'qualiview'
         self.snmp_community = snmp_community
@@ -92,3 +93,11 @@ class EricssonSEOSExtendedSNMPAutoload(EricssonExtendedSNMPAutoload):
         self.cli.send_config_command('no snmp view {0}'.format(self.snmp_view))
         self.cli.send_config_command('no snmp server')
         self.cli.send_config_command('end')
+
+    def _get_chassis_model(self, chassis_id):
+        model = self.entity_table[chassis_id]['entPhysicalDescr']
+        model = re.sub('\s+CLEI.*$', '', model)
+        model_match = re.search(r'chassis.*', self.entity_table[chassis_id]['entPhysicalVendorType'], re.IGNORECASE)
+        if model_match:
+            model = model_match.group()
+        return model

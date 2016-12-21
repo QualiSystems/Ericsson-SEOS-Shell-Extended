@@ -73,6 +73,18 @@ class EricssonSEOSExtendedResourceDriver(ResourceDriverInterface, NetworkingReso
         configuration_operations.logger.info('Save completed')
         return response
 
+    @GlobalLock.lock
+    @context_from_args
+    def reboot(self, context):
+        """Reboot device
+
+        """
+
+        configuration_operations = EricssonConfigurationOperations()
+        configuration_operations.logger.info('Reboot started')
+        configuration_operations.reload()
+        configuration_operations.logger.info('Reboot completed')
+
     @context_from_args
     def orchestration_save(self, context, mode="shallow", custom_params=None):
         configuration_operations = EricssonConfigurationOperations()

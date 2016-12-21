@@ -4,7 +4,7 @@ from cloudshell.networking.ericsson.ericsson_firmware_operations import Ericsson
 from cloudshell.networking.ericsson.ericsson_run_command_operations import EricssonRunCommandOperations
 from cloudshell.networking.ericsson.ericsson_state_operations import EricssonStateOperations
 from cloudshell.networking.ericsson.extended.seos.autoload.ericsson_seos_extended_snmp_autoload import \
-    EricssonSEOSExtendedSNMPAutoload
+    EricssonExtendedSEOSSNMPAutoload
 
 from cloudshell.networking.networking_resource_driver_interface import NetworkingResourceDriverInterface
 from cloudshell.shell.core.context_utils import context_from_args
@@ -99,7 +99,7 @@ class EricssonSEOSExtendedResourceDriver(ResourceDriverInterface, NetworkingReso
         :rtype: string
         """
 
-        autoload_operations = EricssonSEOSExtendedSNMPAutoload()
+        autoload_operations = EricssonExtendedSEOSSNMPAutoload()
         autoload_operations.logger.info('Autoload started')
         response = autoload_operations.discover()
         autoload_operations.logger.info('Autoload completed')

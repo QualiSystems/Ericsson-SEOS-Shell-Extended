@@ -46,6 +46,8 @@
         </Command>
         <Command Name="health_check" DisplayName="Health check" Description="Performs checks on the device that validates that the Shell can work. In a networking device this checks usually include connectivity check for the protocols used by the Shell. The health check result will be visible in the resource live status and command output.">
         </Command>
+        <Command Name="reboot" DisplayName="Reboot" Description="Reboot device">
+        </Command>
         <Command Name="save" DisplayName="Save" Tags="" Description="Create and save a configuration file">
             <Parameters>
                 <Parameter Name="folder_path" Type="String" Mandatory="False" DisplayName="Folder Path"

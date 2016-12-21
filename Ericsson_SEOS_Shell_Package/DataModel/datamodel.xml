@@ -486,6 +486,7 @@
                                 <AllowedValue>10ge-1-port</AllowedValue>
                                 <AllowedValue>10ge-4-port</AllowedValue>
                                 <AllowedValue>10ge-oc192-1-port</AllowedValue>
+                                <AllowedValue>xcrp4-bas-t1/e1</AllowedValue>
                                 <AllowedValue>ase</AllowedValue>
                                 <AllowedValue>sse</AllowedValue>
                             </AllowedValues>
