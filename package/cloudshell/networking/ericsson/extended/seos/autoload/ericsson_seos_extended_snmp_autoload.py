@@ -23,10 +23,11 @@ class EricssonExtendedSEOSSNMPAutoload(EricssonExtendedSNMPAutoload):
         self.snmp_view = 'qualiview'
         self.snmp_community = snmp_community
         self.vendor_type_exclusion_pattern = ['port.*mgmt']
-        self.module_details_regexp = r'^(?P<module_model>.*)\s+[Cc]ard\s+\d+\s+sn:(?P<serial_number>.*)\s+rev:(?P<version>.*) id'
+        self.module_details_regexp = r'^(?P<module_model>.*)\s+([Cc]ard|mic|carrier)\s+(\d+\s+)?sn:\s?(?P<serial_number>\S+)\s+.*(rev|ver):\s?(?P<version>\S+)\s+'
         self.interface_mapping_key = 'rbnIpBindHierarchicalIfIndex'
         self.interface_mapping_mib = 'RBN-IP-BIND-MIB'
         self._load_configuration()
+        self._containers_to_modules_pattern = "^.*carrier$"
         self.enable_snmp = True
         self.disable_snmp = False
         self.load_mib_list = ['RBN-PRODUCT-MIB']
