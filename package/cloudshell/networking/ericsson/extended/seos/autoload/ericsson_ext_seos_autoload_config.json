@@ -24,17 +24,19 @@
       ]
     }
   },
-  "1.3.6.1.4.1.2352.6.9.71": {
+  "1.3.6.1.4.1.193.218.6.9.212": {
     "linecard_model": "ge-5-port",
+    "comment": "!!!oid is not verified!!!",
     "pfe_0": {
       "1GE_ports": [
         "1-5"
       ]
     }
   },
-  "1.3.6.1.4.1.2352.6.9.76": {
+  "1.3.6.1.4.1.193.218.6.9.213": {
     "linecard_model": "ge2-10-port",
-      "pfe_0": {
+    "comment": "!!!oid is not verified!!!",
+    "pfe_0": {
       "1GE_ports": [
         "1-10"
       ]
@@ -64,52 +66,8 @@
       ]
     }
   },
-  "1.3.6.1.4.1.2352.6.9.77": {
-    "linecard_model": "Oc48e-4-port",
-    "pfe_0": {
-      "1GE_ports": [
-        "1-4"
-      ]
-    }
-  },
-  "1.3.6.1.4.1.2352.6.9.78": {
-    "linecard_model": "Atm-oc3e-8-port",
-    "pfe_0": {
-      "1GE_ports": [
-        "1-8"
-      ]
-    }
-  },
-  "1.3.6.1.4.1.2352.6.9.84": {
-    "linecard_model": "Atm-oc12e-2-port",
-    "pfe_0": {
-      "1GE_ports": [
-        "1-2"
-      ]
-    }
-  },
-  "1.3.6.1.4.1.2352.6.9.79": {
-    "linecard_model": "Ch-oc3oc12-8or2-port",
-    "pfe_0": {
-      "1GE_ports": [
-        "1-8"
-      ]
-    }
-  },
-  "1.3.6.1.4.1.2352.6.9.69": {
-    "linecard_model": "Fege-60-2-port",
-    "pfe_0": {
-      "1GE_ports": [
-        "1-62"
-      ]
-    }
-  },
   "1.3.6.1.4.1.2352.6.9.66": {
-    "linecard_model": "xcrp4-bas-t1-e1",
+    "linecard_model": "xcrp4-bas-t1/e1",
     "ignore_linecard": "true"
-  },
-  "1.3.6.1.4.1.2352.6.9.1": {
-    "linecard_model": "xcrp3-adv-t1-e1",
-    "ignore_linecard": "true"
-  } 
+  }
 }

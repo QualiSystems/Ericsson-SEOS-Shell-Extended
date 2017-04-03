@@ -469,38 +469,26 @@
                         </AttachedAttribute>
                         <AttachedAttribute Name="Ericsson Model" IsOverridable="true" IsLocal="true">
                             <AllowedValues>
-                                <AllowedValue>Atm-oc3e-8-port</AllowedValue>
                                 <AllowedValue>atm-oc3e-8-port</AllowedValue>
                                 <AllowedValue>atm-oc12e-2-port</AllowedValue>
-                                <AllowedValue>Atm-oc12e-2-port</AllowedValue>
                                 <AllowedValue>oc3e-8-port</AllowedValue>
                                 <AllowedValue>oc12e-4-port</AllowedValue>
                                 <AllowedValue>oc48e-4-port</AllowedValue>
                                 <AllowedValue>oc192-1-port</AllowedValue>
                                 <AllowedValue>ch-oc3oc12-8or2-port</AllowedValue>
                                 <AllowedValue>fege-60-2-port</AllowedValue>
-                                <AllowedValue>Fege-60-2-port</AllowedValue>
                                 <AllowedValue>ge-10-port</AllowedValue>
-                                <AllowedValue>Ge-10-port</AllowedValue>
                                 <AllowedValue>ge-20-port</AllowedValue>
                                 <AllowedValue>ge3-4-port</AllowedValue>
                                 <AllowedValue>ge-5-port</AllowedValue>
                                 <AllowedValue>ge2-10-port</AllowedValue>
                                 <AllowedValue>ge4-20-port</AllowedValue>
-                                <AllowedValue>Ge4-20-port</AllowedValue>
                                 <AllowedValue>10ge-1-port</AllowedValue>
                                 <AllowedValue>10ge-4-port</AllowedValue>
                                 <AllowedValue>10ge-oc192-1-port</AllowedValue>
-                                <AllowedValue>xcrp4-bas-t1-e1</AllowedValue>
-                                <AllowedValue>xcrp3-adv-t1-e1</AllowedValue>
+                                <AllowedValue>xcrp4-bas-t1/e1</AllowedValue>
                                 <AllowedValue>ase</AllowedValue>
-                                <AllowedValue>ase2</AllowedValue>
-                                <AllowedValue>Ase</AllowedValue>
-                                <AllowedValue>Ase2</AllowedValue>
                                 <AllowedValue>sse</AllowedValue>
-                                <AllowedValue>Sse</AllowedValue>
-                                <AllowedValue>Oc48e-4-port</AllowedValue>
-                                <AllowedValue>Ch-oc3oc12-8or2-port</AllowedValue>
                             </AllowedValues>
                         </AttachedAttribute>
                     </AttachedAttributes>
